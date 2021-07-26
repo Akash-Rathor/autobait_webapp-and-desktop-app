@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+	<section class="dashboardBox">
+		<div class="creat_CampList">
+			<h2>What type of campaign do you want to create?</h2>
+			<form method="POST" action="{% url 'campaigns' 2 %}">
+				{% csrf_token %}
+				<div class="form-group mt-4 pwBox">
+					<input type="text" name = "campaignmode" id="campaignmode" class="form-control" placeholder="Linkedin Only" value = "Linkedin Only" required readonly/>
+					</div>
+					<div class="text-center" style="margin-top: 10px;">
+					<button type="submit" class="btn btn-warning">Next</button>
+				</div>
+				</form>
+		<a type="button" class="creatLinkDtl" id="first_choice">
+			<span class="iconSocial"><i class="fa fa-linkedin-square"></i></span>
+			<span class="textSocial" name="Linkedin_Only1">
+				<h3>Linkedin Only</h3>
+				<p>Create a sequence with linkedin touches.</p>
+			</span>
+		</a>
+		</div>
+	</section>
+{% endblock content %}

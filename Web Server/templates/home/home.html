@@ -1,0 +1,31 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{%  static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{%  static 'assets/css/reset.css' %}">
+<link rel="stylesheet" type="text/css" href="{%  static 'assets/css/style.css' %}">
+
+<title>:: AutoBait ::</title>
+</head>
+<body class="logInPageBg">
+	<div class="mainBody dashBoardBgcol">
+		<section class="loginBox">
+			<a href="#" class="logo"><img src="{%  static 'assets/images/mainLogo.png' %}"></a>
+			<div class="inerLoginBox">
+				<a href="{% url 'social:begin' 'linkedin-oauth2' %}" class="btn button loginBtn"><i class="fa fa-linkedin-square"></i> Sign Up with LinkedIn</a>
+			</div>
+		</section>
+	</div>
+<script src="{%  static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+<script src="{%  static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{%  static 'assets/js/custom.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+	<section class="dashboardBox">
+		<div class="col-md-7 float-start campCreatBox">
+			<div class="backNdnext">
+				<a href="{% url 'campaigns' 1 %}" class="backbtn"><i class="fa fa-long-arrow-left"></i> Back</a>
+			</div>
+			<div class="w-100 float-start ">
+				<h2 class="camp_Head">What type of campaign do you want to create?</h2>
+				<form method="POST" action="{% url 'campaigns' 3 %}">
+					{% csrf_token %}
+					<div class="form-group mt-4 pwBox">
+						<input type="text" name = "urlinputtype" id="campaignmode" class="form-control" placeholder="Paste Linkedin URL" value = "Paste Linkedin URL" required readonly/>
+						</div>
+						<div class="text-center" style="margin-top: 10px;">
+						<button type="submit" class="btn btn-warning">Next</button>
+					</div>
+					</form>
+				<div class="innerCampList">
+					<a href="/" class="creatLinkDtl">
+						<span class="iconSocial"><i class="fa fa-upload"></i></span>
+						<span class="textSocial">
+							<h3>Paste Linkedin URL</h3>
+							<p>Create a sequence with linkedin touches.</p>
+						</span>
+					</a>
+					<!-- <a href="/" class="creatLinkDtl">
+						<span class="iconSocial"><i class="fa fa-upload"></i></span>
+						<span class="textSocial">
+							<h3>Linkedin URL</h3>
+							<p>Create a sequence with linkedin touches.</p>
+						</span>
+					</a> -->
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

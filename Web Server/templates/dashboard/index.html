@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class="dashboardBox">
+		<div class="inerDbBox">
+			<img src="{% static 'assets/images/dashboard.png' %}">
+			<h1>Your Dashboard is Empty</h1>
+			<p>Watch and analyse your stats as they grow while you run campaings.</p>
+			<a href="{% url 'campaigns' 1 %}" class="btn button"><i class="fa fa-plus"></i> Create Campaign</a>
+		</div>
+	</section>
+
+	<div class="clear"></div>
+</div>
+{% endblock content %}

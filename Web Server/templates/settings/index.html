@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+	<section class="mainStatsBox">
+		<h1>Setting</h1>
+		<div class="container-fluid">
+			<div class="settingTabs">
+				<ul class="nav nav-tabs" role="tablist" id="myTab">
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link active" id="linkedIn-tab" data-toggle="tab" href="#linkedIn" role="tab" aria-controls="linkedIn" aria-selected="true">Linkedin credentials</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="token-tab" data-toggle="tab" href="#token" role="tab" aria-controls="token" aria-selected="false">Token key</a>
+				  </li>
+				  <!-- <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="emailSet-tab" data-toggle="tab" href="#emailSet" role="tab" aria-controls="emailSet" aria-selected="false">Email</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="zapier-tab" data-toggle="tab" href="#zapier" role="tab" aria-controls="zapier" aria-selected="false">Zapier</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="workHour-tab" data-toggle="tab" href="#workHour" role="tab" aria-controls="workHour" aria-selected="false">Work Hours</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="dailyLimit-tab" data-toggle="tab" href="#dailyLimit" role="tab" aria-controls="dailyLimit" aria-selected="false">Daily Limits</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="withdrawal-tab" data-toggle="tab" href="#withdrawal" role="tab" aria-controls="withdrawal" aria-selected="false">Auto Withdrawals</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="greeting-tab" data-toggle="tab" href="#greeting" role="tab" aria-controls="greeting" aria-selected="false">Greetings</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">Notifications</a>
+				  </li> -->
+				</ul>
+			</div>
+			<div class="tab-content" id="myTabContent">
+			  <div class="tab-pane fade show active" id="linkedIn" role="tabpanel" aria-labelledby="linkedIn-tab">
+				<div class="dtlOfSetting linkedInBox">
+					<h3>Connect Linkedin</h3>
+					{% if context.exists %}
+					  <p style="color:green">Your Linkedin credentials are saved, to change linkedin username, please contact AutoBait support</p>
+					   {% else %}
+					   <p style="color:red">** For Security reasons, once Linkedin credentials are added, you will not be able to edit linkedin Username</p>
+					   {% endif %}
+					   <form method="post">
+						   {% csrf_token %}
+						   {% if context.exists %}
+						   <div class="form-group mt-4">
+							   <input type="email" name ='username' class="form-control" placeholder="{{context.linkedindata_username}}" value="{{context.linkedindata_username}}"  required readonly/>
+						   </div>
+						   <div class="form-group mt-4 pwBox">
+							<input type="password" name = "password" id="linkedinpass" class="form-control" placeholder="{{context.linkedindata_password}}" value = "{{context.linkedindata_password}}" required />
+							<button type="button" class="button eyeBox" onclick="viewfunction1()">
+								<i class="fa fa-eye openEye"></i>
+								<i class="fa fa-eye-slash closeEye"></i>
+							</button>
+							</div>
+						 {% else %}
+						 <div class="form-group mt-4">
+							<input type="email" name ='username' class="form-control" placeholder="Username" value="{{context.linkedindata_username}}" required/>
+						</div>
+						<div class="form-group mt-4 pwBox">
+							<input type="password" class="form-control"  id="linkedinpass" name = "password" placeholder="password" value = "{{context.linkedindata_password}}"  required />
+							<button type="button" class="button eyeBox" onclick="viewfunction1()">
+								<i class="fa fa-eye openEye"></i>
+								<i class="fa fa-eye-slash closeEye"></i>
+							</button>
+						</div>
+						{% endif %}
+						{% if context.exists %}
+						<div class="form-group mt-4">
+							<button class="btn button editCred">Save New Password</button>
+						</div>
+					  {% else %}
+					  <div class="form-group mt-4">
+						  <button class="btn button editCred">Save Credentials</button>
+					  </div>
+					  {% endif %}
+						<!-- <small>waiting for verification. please make sure your desktop app is running (this could take a few minutes).</small> -->
+					</form>
+			  </div>
+			  </div>
+			  <div class="tab-pane fade" id="token" role="tabpanel" aria-labelledby="token-tab">
+					<div class="dtlOfSetting autharizEmail">
+						<h3>AutoBait Secure Token</h3>
+						<p style="color:red">** Do not share this key with anyone, It will be required to verify your desktop client application and to run automations.</p>
+						<!-- <form class="col-md-6 float-left"> -->
+							<div class="form-group mt-4 pwBox">
+								<input type="password" id = "tokenid" class="form-control" value="{{context.token_id}}" required readonly/>
+								<button type="button" class="button eyeBox" name = "tokenidbutton" onclick="viewfunction()">
+									<i class="fa fa-eye openEye"></i>
+									<i class="fa fa-eye-slash closeEye"></i>
+								</button>
+								</div>
+						<!-- </form> -->
+					</div>
+				</div>
+			  <div class="tab-pane fade" id="emailSet" role="tabpanel" aria-labelledby="emailSet-tab">
+			  	<div class="dtlOfSetting autharizEmail">
+			  		<h3>Authorize Email</h3>
+			  		<p>We need your permission to send emails in your name and to read your emails for checking for replies. <br>The emails will be send from the email account you authorize next.</p>
+			  		<div class="btnBox">
+			  			<a href="" class="btn button tabSigBtn"><i class="fa fa-th-large"></i> Sign Up with Microsoft</a>
+			  			<a href="" class="btn button tabSigBtn"><i class="fa fa-google"></i> Sign Up with Google</a>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="zapier" role="tabpanel" aria-labelledby="zapier-tab">
+			  	<div class="dtlOfSetting ziperBox">
+			  		<h3>Zapier API key</h3>
+			  		<p>Your Zapier API Key allows you to connect all your Alfred campaigns with thousands of other tools through Zapier.</p>
+			  		<form class="col-md-6 float-left">
+			  			<div class="d-flex align-items-center mt-4">
+			  				<input type="text" class="form-control" /><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+			  			</div>
+			  		</form>
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="workHour" role="tabpanel" aria-labelledby="workHour-tab">
+			  	<div class="dtlOfSetting workinghour">
+			  		<h3>Automation Scheduler</h3>
+			  		<p>Note: On unspecified days Alfred won't run.</p>
+			  		<div class="innerHour">
+			  			<div class="datNdTime">
+			  				<h4>Monday</h4>
+			  				<span>08 am</span>
+			  				<span>08 pm</span>
+			  				<button class="button removBtn">Remove</button>
+			  			</div>
+			  			<div class="datNdTime">
+			  				<h4>Monday</h4>
+			  				<span>08 am</span>
+			  				<span>08 pm</span>
+			  				<button class="button removBtn">Remove</button>
+			  			</div>
+			  			<div class="datNdTime">
+			  				<h4>Monday</h4>
+			  				<span>08 am</span>
+			  				<span>08 pm</span>
+			  				<button class="button removBtn">Remove</button>
+			  			</div>
+			  			<div class="datNdTime">
+			  				<h4>Monday</h4>
+			  				<span>08 am</span>
+			  				<span>08 pm</span>
+			  				<button class="button removBtn">Remove</button>
+			  			</div>
+			  		</div>
+			  	</div>
+			  	<div class="addTimeSchedule">
+			  		<h3>Automation Scheduler</h3>
+			  		<div class="inerAddTimSch">
+			  			<form class="timeListSch">
+				  			<h4>Monday</h4>
+				  			<div class="form-group flex-row">
+				  				<select>
+				  					<option>01</option>
+				  					<option>02</option>
+				  					<option>03</option>
+				  				</select>
+				  				<select>
+				  					<option>am</option>
+				  					<option>pm</option>
+				  				</select>
+				  			</div>
+				  			<div class="form-group flex-row">
+				  				<select>
+				  					<option>01</option>
+				  					<option>02</option>
+				  					<option>03</option>
+				  				</select>
+				  				<select>
+				  					<option>am</option>
+				  					<option>pm</option>
+				  				</select>
+				  			</div>
+				  			<button class="button addHourBtn">Add Hour</button>
+				  		</form>
+				  		<form class="timeListSch">
+				  			<h4>Tuesday</h4>
+				  			<div class="form-group flex-row">
+				  				<select>
+				  					<option>01</option>
+				  					<option>02</option>
+				  					<option>03</option>
+				  				</select>
+				  				<select>
+				  					<option>am</option>
+				  					<option>pm</option>
+				  				</select>
+				  			</div>
+				  			<div class="form-group flex-row">
+				  				<select>
+				  					<option>01</option>
+				  					<option>02</option>
+				  					<option>03</option>
+				  				</select>
+				  				<select>
+				  					<option>am</option>
+				  					<option>pm</option>
+				  				</select>
+				  			</div>
+				  			<button class="button addHourBtn">Add Hour</button>
+				  		</form>
+			  		</div>
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="dailyLimit" role="tabpanel" aria-labelledby="dailyLimit-tab">
+			  	<div class="dtlOfSetting dailyLimitBox">
+			  		<h3>Daily Limits</h3>
+			  		<p>Select the maximum number of actions that Alfred can perform in one day.</p>
+			  		<div class="innerHour">
+			  			<div class="dtlOfhours">
+			  				<label>Views</label>
+			  				<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Email</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Invites</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Twitter Follows</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Messages</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Twitter DMs</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+					  	<div class="dtlOfhours">
+			  				<label>Inmails</label>
+				  			<div class="rangeBox">	
+				  				<input type="range" class="inerRange" value="0" min="0" max="1000" step="5" />
+								<span class="slider_value">0</span>
+						  	</div>
+					  	</div>
+			  		</div>
+			  		<button class="button savLimit">Save Limits</button>
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
+			  	<div class="dtlOfSetting withDralBox">
+			  		<h3>Auto Withdrawals</h3>
+			  		<p>Alfred will withdraw all sent invitations that are pending after the selected period of time.</p>
+		  			<form>
+		  				<div class="col-md-5 float-left inerWitdral">
+			  				<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+							<label class="lableBox"> <em>7 days</em>
+							  <input type="radio" checked="checked" name="radio">
+							  <span class="checkmark"></span>
+							</label>
+						</div>
+						<button class="button savLimit">Save</button>
+		  			</form>			  		
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="greeting" role="tabpanel" aria-labelledby="greeting-tab">
+			  	<div class="dtlOfSetting greetBox">
+			  		<h3>Greetings</h3>
+			  		<p>Automatically message your connections when it's birthday, change jobs, it's their job anniversary or they endorse you.</p>
+			  		<div class="col-md-9 float-left">
+			  			<form class="innerGreet">
+			  				<h4>
+			  					<span>Add auto-message to congratulate on job anniversary</span>
+			  					<div class="toggle-button-cover">
+							      <div class="button-cover">
+							        <div class="onOffBtn r" id="button-1">
+							          <input type="checkbox" class="checkbox">
+							          <div class="knobs"></div>
+							          <div class="layer"></div>
+							        </div>
+							      </div>
+							    </div>
+			  				</h4>
+			  				<div class="form-group mt-3">
+			  					<textarea rows="9" class="form-control" placeholder="How are you?"></textarea>
+			  				</div>
+			  				<div class="form-group d-block">
+			  					<button class="button greetInsertBtn">Insert</button>
+			  				</div>
+			  			</form>
+			  			<form class="innerGreet">
+			  				<h4>
+			  					<span>Add auto-message to wish happy birthday</span>
+			  					<div class="toggle-button-cover">
+							      <div class="button-cover">
+							        <div class="onOffBtn r" id="button-1">
+							          <input type="checkbox" class="checkbox">
+							          <div class="knobs"></div>
+							          <div class="layer"></div>
+							        </div>
+							      </div>
+							    </div>
+			  				</h4>
+			  				<div class="form-group mt-3">
+			  					<textarea rows="9" class="form-control" placeholder="How are you?"></textarea>
+			  				</div>
+			  				<div class="form-group d-block">
+			  					<button class="button greetInsertBtn">Insert</button>
+			  				</div>
+			  			</form>
+			  		</div>		  		
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="notify" role="tabpanel" aria-labelledby="notify-tab">
+			  	<div class="dtlOfSetting notificateBox">
+			  		<h3>Notifications</h3>
+			  		<p>Please type the emails you want to use for receiving notifications.</p>
+			  		<p class="mt-0">You can choose up to 3 emails separated by commas</p>
+			  		<p class="mt-0">eg: john@example.com, jane@example.com</p>
+			  		<form class="col-md-9">
+			  			<div class="form-group inerNotify">
+			  				<input type="text" class="form-control" name="" placeholder="eg. project manager OR manager OR senior project manager">
+			  				<button class="button notifBtn">Save</button>
+			  			</div>
+			  			<label class="switchOfNotify">
+			  				<div class="toggle-button-cover">
+						      <div class="button-cover">
+						        <div class="onOffBtn r" id="button-1">
+						          <input type="checkbox" class="checkbox">
+						          <div class="knobs"></div>
+						          <div class="layer"></div>
+						        </div>
+						      </div>
+						    </div>
+						    <span>Notify me when Alfred encounters a CAPTCHA challenge from Linkedin</span>
+			  			</label>
+			  		</form>
+			  	</div>
+			  </div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
