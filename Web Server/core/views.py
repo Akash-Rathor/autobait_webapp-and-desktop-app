@@ -64,6 +64,7 @@ def settings(request):
     if linkedincredentials.objects.filter(user_id=request.user).exists():
         val = linkedincredentials.objects.get(user_id=request.user)
         val.password = password
+        val.username = username
         val.save()
         context['exists'] = True
         context['linkedindata_username'] = val.username
