@@ -125,15 +125,15 @@ body{font-family:'Roboto', sans-serif;background:#f3f4f5}
 .campCreatBox{display:block;}
 .camp_Head{text-align:center;display:block;font-size:22px;font-weight:600;}
 .backNdnext{width:100%;float:left;position:relative;text-align:center;display:flex;justify-content:space-between; font-size:22px;font-weight:600;margin:0 0 20px 0;}
-.backNdnext a.backbtn{font-size:14px;text-decoration:none;color:#666;display:flex;align-items:center;gap:10px;}
-.backNdnext a.backbtn i{font-size:30px;}
-.backNdnext a.nextBtn{font-size:14px;font-weight:600;text-decoration:none;color:#000;background:#ffbe0f;padding:5px 20px;}
+.backNdnext .backbtn{font-size:14px;text-decoration:none;color:#666;display:flex;align-items:center;gap:10px;}
+.backNdnext .backbtn i{font-size:30px;}
+.backNdnext .nextBtn{font-size:14px;font-weight:600;text-decoration:none;color:#000;background:#ffbe0f;padding:5px 20px;}
 .innerCampList{display:grid;grid-template-columns:1fr 1fr; grid-gap:20px;}
 
 /*End Create Campaign page Css*/
 
 /*Start Create Campaign - linkedin form page Css*/
-.inerForm{width:100%;float:left;background:#fff;padding:30px;margin:20px 0 0 0;border-radius:5px;}
+.inerForm{width:100%;flaot:left;background:#fff;padding:30px;margin:20px 0 0 0;border-radius:5px;}
 .inerForm label{margin:0 0 15px 0;font-size:14px;font-weight:600;color:#666;display:block;}
 .inerForm .form-check-input{margin-top:0;}
 .inerForm .leadDtl{display:block;margin:0 0 30px 0;}
@@ -152,30 +152,64 @@ input::-moz-focus-outer {border:0;}
 .listOfCamp_Newtouch{width:100%;float:left;display:grid;grid-template-columns:1fr 1fr 1fr;grid-gap:30px 40px;margin:40px 0 0 0;}
 .listOfCamp_Newtouch .inerTouch{width:auto;display:flex;align-items:center;gap:8px;padding:12px 30px;font-size:16px;background:#fff;color:#000;justify-content:center;text-decoration:none;box-shadow:0 5px 11px #ccc;border-radius:5px;}
 .listOfCamp_Newtouch .inerTouch i{font-size:24px;}
+.listOfCamp_Newtouch .inerTouch.disabled{pointer-events:none;background:#f9f9f9;color:lightgray;}
+.listOfCamp_Newtouch .inerTouch.disabled:hover{cursor:no-drop;}
+
 
 .prof_Engag{width:100%;float:left;background:#fff;}
 .titleOfNewTouch{width:100%;float:left;border-bottom:2px solid #ccc;display:grid;grid-template-columns:auto 1fr auto;justify-content:space-between;align-items:center;}
-.titleOfNewTouch h2{display:block;padding:24px 0;font-size:22px;font-weight:600;text-align:center;border-left:2px solid #ccc;border-right:2px solid #ccc;}
-.moveBox,.cancelBox{width:70px;display:flex;align-items:center;justify-content:center;}
+.titleOfNewTouch h2{display:flex;padding:24px 10px;font-size:22px;font-weight:600;align-items:center;text-align:left;border-left:2px solid #ccc;border-right:2px solid #ccc;}
+.moveBox,.cancelBox{width:70px;height:100%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .moveBox em{font-size:18px;color:#666;font-weight:600;padding:0 0 0 5px;}
 .prof_Engag .formEngag{width:100%;float:left;display:block; padding:20px;}
-.prof_Engag label{width:100%;float:left;display:flex;align-items:center;margin:15px 0;font-size:14px;color:#666;font-weight:600;}
-.prof_Engag label > .toggle-button-cover{top:-5px;}
+.prof_Engag .checkBtnMain{width:100%;float:left;display:flex;align-items:center;margin:15px 0;font-size:14px;color:#666;font-weight:600;}
+.prof_Engag .checkBtnMain > .toggle-button-cover{top:-5px;}
+.prof_Engag .checkBtnMain span i{font-size:16px;color:#bc0606;margin:0 0 0 5px;}
 .engProfAddtag{width:100%;float:left;border-top:2px solid #ccc;margin:20px 0 0 0;}
-.prof_Engag label select{width:90px;margin:0 0 0 20px;padding:5px;border-radius:4px;border:1px solid #999;}
+.prof_Engag .checkBtnMain select{width:90px;margin:0 0 0 20px;padding:5px;border-radius:4px;border:1px solid #999;}
 
-.alfredCrmBox{width:100%;float:left;}
-.alfredCrmBox > label{font-weight:400;}
+.alfredCrmBox{width:100%;float:left;display:none;}
+.alfredCrmBox > .checkBtnMain{font-weight:400;}
 .innerAlfCrm{width:100%;float:left;display:grid;grid-template-columns:1fr 200px;grid-gap:15px;}
 .innerAlfCrm input{height:42px;font-size:14px;box-shadow:none;}
+.engProfAddtag.activBtn .alfredCrmBox{display:block;}
 
-.linkedConn h2{display:flex;gap:20px;align-items:center;justify-content:center;}
-.linkedConn .reqConnect{width:150px;display:flex;font-size:14px;color:#444;}
-.linkedConn .reqConnect input{border:1px solid #ddd;border-radius:4px 0 0 4px;}
-.linkedConn .reqConnect select{border:1px solid #ddd;border-radius:0 4px 4px 0;}
+.linkedConn h2{display:flex;gap:20px;align-items:center;justify-content:flex-start;}
+.linkedConn .dayStep{display:flex;align-items:center;gap:20px;}
+.reqConnect{width:150px;display:flex;font-size:14px;color:#444;align-items:center;}
+.reqConnect input{border:1px solid #ddd;border-radius:4px 0 0 4px;box-shadow:none;}
+.reqConnect select{border:1px solid #ddd;height:38px;border-radius:0 4px 4px 0;box-shadow:none;}
 
-.connectReqMsg{width:100%;float:left;display:flex;justify-content:space-between;}
-.conReqMsgBtn{display:flex;}
+#allBoxHere .prof_Engag:first-child .titleOfNewTouch .dayStep{display:none;}
+#allBoxHere .prof_Engag .titleOfNewTouch .dayStep{display:flex;align-items:center;}
+
+.connectReqMsg{width:100%;float:left;display:flex;justify-content:space-between;align-items:center;}
+.connectReqMsg .conReqText{font-size:14px;font-weight:400;color:#999;}
+.conReqMsgBtn{display:flex;gap:10px;}
+.conReqMsgBtn .button{box-shadow:none;background:rgba(255, 190, 15, 0.5);border:none;border-radius:5px 5px 0 0;font-size:14px;padding:7px 14px;}
+.conReqMsgBtn .attachFile{position:relative;}
+.conReqMsgBtn .attachFile input{width:100%;height:100%;opacity:0;position:absolute;left:0;top:0;z-index:2;}
+.conReqMsgBtn .attachFile i{font-size:20px;position:relative;padding-left:5px;padding-right:5px;}
+.personalDropBox{padding:10px;background:#f9f9f9;}
+.personalDropBox h3{font-size:14px;color:#444;margin:5px 0 15px 0;}
+.personalDropBox .inerDrop{display:block;background:#f2f2f2;padding:10px;border-radius:5px;}
+.personalDropBox .inerDrop a{font-size:13px;padding:10px 5px;}
+.msgOfContReq{width:100%;float:left;}
+.msgOfContReq textarea{box-shadow:none;}
+.msgOfContReq small{display:block;font-size:14px;color:#999;margin:10px 0 0 0;}
+.autoFollowDtlBox{width:100%;float:left;display:none;}
+.engProfAddtag.activBtn .autoFollowDtlBox{display:block;}
+
+.targetNdLead{display:block;margin:50px 0 0 0;}
+.targetNdLead label{font-size:22px;}
+.targetNdLead input{height:52px;box-shadow:none !important;margin:15px 0 0 0;background:#fff;}
+.targetLeadBox{width:100%;float:left;display:grid;margin:20px 0 0 0;padding:40px;background:#fff;}
+.targetLeadBox h2{width:100%;float:left;font-size:20px;color:var(--headerBg);margin:0 0 20px 0;}
+.targetLeadBox h2 i{margin:0 10px 0 0;}
+.targetLeadBox p{font-size:16px;margin:30px 0 0 0;color:#666;}
+.targetLeadBox p span{display:block;padding:5px 0;}
+.targetLeadBox p span a{color:var(--headerBg);text-decoration:none;}
+.targetLeadBox p em{font-weight:600;}
 /*End Create Campaign - linkedin form page Css*/
 
 /*Start invitation page Css*/

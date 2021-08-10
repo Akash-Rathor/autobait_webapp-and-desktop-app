@@ -1,67 +1,463 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="dashboardBox">
-		<div class="col-md-7 float-start campCreatBox">
-			<div class="backNdnext">
-				<a href="{% url 'campaigns' 2 %}" class="backbtn"><i class="fa fa-long-arrow-left"></i> Back</a> 
-				
-				<!-- <a href="{% url 'campaigns' 4 %}" class="nextBtn btn button">Next</a> -->
-			</div>
-			<div class="w-100 float-start">
-				<h2 class="camp_Head">What type of campaign do you want to create?</h2>
-				<form method="POST" action="{% url 'campaigns' 4 %}">
-					{% csrf_token %}
-					<div class="inerForm">
-						<div class="form-group">
-							<label>Paste here your linkedin search URL</label>
-							<input type="text" class="form-control" name="searchedurl" placeholder="You can use basic linkedin search URL or sales navigator URL or Recruiter Lite URL" />
-						</div>
-					</div>
-					<div class="inerForm">
-						<div class="form-group">
-							<div class="leadDtl">
-								<label>Maximum amount of leads:</label>		
-								<div class="range">
-								    <div class="form-group range__slider">
-								      <input type="range" step="5">
-								    </div>
-								    <div class="form-group range__value">
-								      <span></span>            
-								    </div>
-							  	</div>
-						    </div>
-						</div>
+<form id="form" method="POST" action="{% url 'campaigns' 5 %}"name='final'>
+	{% csrf_token %}
+	<section class="dashboardBox">
 
-						<!-- <div class="form-group">
-							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault01">
-							  <label class="form-check-label" for="flexCheckDefault01">
-							    Exclude Profiles Without Photos.
-							  </label>
+		<div class="col-md-7 campCreatBox" id="sortable-div">			
+			<div class="w-100 float-start dragbleList">
+				
+				<div class="backNdnext">
+					<a href="{% url 'campaigns' 3 %}" class="backbtn"><i class="fa fa-long-arrow-left"></i> Back</a> 
+<!--					<a href="create-campaign.html" class="nextBtn btn button">Next</a>
+-->                   <input id="submit" type="button" name="submit" value="Next" class="nextBtn btn button">
+				</div>
+				<div class="w-100 float-start sortable-list" id="allBoxHere">
+
+					
+					<!-- Start Profile Engegement -->
+						<!-- <div class="prof_Engag linkedConn profileEngeg01 sortable-item mt-5">
+							<div class="titleOfNewTouch">
+								<span class="moveBox">
+									<i class="fa fa-arrows-alt" aria-hidden="true"></i> <em>1</em>
+								</span>
+								<h2>
+									<span>Engage with profile</span>
+									<div class="dayStep">
+										<div class="reqConnect">
+											<input type="text" class="form-control">
+											<select>
+												<option> days </option>
+											</select>
+										</div>  
+										<span>from previous step.</span>
+									</div>
+								</h2>
+								<span class="cancelBox"><i class="fa fa-times" aria-hidden="true"></i></span>
 							</div>
+							<form class="formEngag">
+								<div class="checkBtnMain">
+									<div class="toggle-button-cover">
+								      <div class="button-cover">
+								        <div class="onOffBtn r" id="button-1">
+								          <input type="checkbox" class="checkbox">
+								          <div class="knobs"></div>
+								          <div class="layer"></div>
+								        </div>
+								      </div>
+								    </div>
+								    <span>Visit LinkedIn Profile</span>
+								</div>
+								<div class="checkBtnMain">
+									<div class="toggle-button-cover">
+								      <div class="button-cover">
+								        <div class="onOffBtn r" id="button-1">
+								          <input type="checkbox" class="checkbox">
+								          <div class="knobs"></div>
+								          <div class="layer"></div>
+								        </div>
+								      </div>
+								    </div>
+								    <span>Auto Follow on LinkedIn</span>
+								</div>
+								<div class="checkBtnMain">
+									<div class="toggle-button-cover">
+								      <div class="button-cover">
+								        <div class="onOffBtn r" id="button-1">
+								          <input type="checkbox" class="checkbox">
+								          <div class="knobs"></div>
+								          <div class="layer"></div>
+								        </div>
+								      </div>
+								    </div>
+								    <span>Auto Follow on LinkedIn</span>
+								</div>
+								<div class="checkBtnMain">
+									<div class="toggle-button-cover">
+								      <div class="button-cover">
+								        <div class="onOffBtn r" id="button-1">
+								          <input type="checkbox" class="checkbox">
+								          <div class="knobs"></div>
+								          <div class="layer"></div>
+								        </div>
+								      </div>
+								    </div>
+								    <span>Auto Follow on LinkedIn</span>
+								    <select>
+								    	<option>1</option>
+								    	<option>2</option>
+								    	<option>3</option>
+								    </select>
+								</div>
+								<div class="engProfAddtag">
+									<div class="checkBtnMain">
+										<div class="toggle-button-cover">
+									      <div class="button-cover">
+									        <div class="onOffBtn r" id="button-1">
+									          <input type="checkbox" class="checkbox">
+									          <div class="knobs"></div>
+									          <div class="layer"></div>
+									        </div>
+									      </div>
+									    </div>
+									    <span>Add tags in this step</span>
+									</div>
+									<div class="alfredCrmBox">
+										<div class="checkBtnMain">Add Tags to Alfred CRM</div>
+										<div class="innerAlfCrm">
+											<input type="text" class="form-control" placeholder="Select Alfred Tags" />
+											<input type="text" class="form-control" placeholder="Create new tag" />
+										</div>
+									</div>
+								</div>						
+							</form>
 						</div> -->
-						<!-- <div class="form-group">
-							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault02">
-							  <label class="form-check-label" for="flexCheckDefault02">
-							    Premium Users Only.
-							  </label>
+					<!-- End Profile Engegement -->
+
+					<!-- Start Linkedin Connect -->
+						<!-- <div class="prof_Engag linkedConn linkedConnect01 sortable-item mt-5">
+							<div class="titleOfNewTouch">
+								<span class="moveBox">
+									<i class="fa fa-arrows-alt" aria-hidden="true"></i> <em>2</em>
+								</span>
+								<h2>
+									<span>Send a connection request</span>
+									<div class="dayStep">
+										<div class="reqConnect">
+											<input type="text" class="form-control">
+											<select>
+												<option> days </option>
+											</select>
+										</div>  
+										<span>from previous step.</span>
+									</div>
+								</h2>
+								<span class="cancelBox"><i class="fa fa-times" aria-hidden="true"></i></span>
 							</div>
+							<form class="formEngag">
+								<div class="form-group">
+									<div class="connectReqMsg">
+										<div class="conReqText">Connection Request Message</div>
+										<div class="conReqMsgBtn">
+											<button type="button" class="button" data-bs-toggle="modal" data-bs-target="#linkedInConnect02Modal">Templates</button>
+											<div class="btn-group">
+											  <button type="button" class="btn button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+											    Personalize
+											  </button>
+											  <div class="dropdown-menu dropdown-menu-end personalDropBox">
+											  	<h3>SNIPPETS</h3>
+											  	<div class="inerDrop">
+												    <a class="dropdown-item" href="#">First Name</a>
+												    <a class="dropdown-item" href="#">Last Name</a>
+												    <a class="dropdown-item" href="#">Company</a>
+												    <a class="dropdown-item" href="#">Position</a>
+												    <a class="dropdown-item" href="#">Industry</a>
+												</div>
+											  </div>
+											</div>
+										</div>
+									</div>
+									<div class="msgOfContReq">
+										<textarea rows="5" class="form-control"></textarea>
+										<small>Alfred will cut the message if it exceeds 300 characters adding the snippets</small>
+									</div>
+								</div>
+
+								<div class="engProfAddtag border-0 mt-3">
+									<div class="checkBtnMain">
+										<div class="toggle-button-cover">
+									      <div class="button-cover">
+									        <div class="onOffBtn r" id="button-1">
+									          <input type="checkbox" class="checkbox">
+									          <div class="knobs"></div>
+									          <div class="layer"></div>
+									        </div>
+									      </div>
+									    </div>
+									    <span>Auto follow-up with message once connected</span>
+									</div>
+									<div class="autoFollowDtlBox">
+										<div class="connectReqMsg">
+											<div class="conReqText">Follow Up Message After Connect</div>
+											<div class="conReqMsgBtn">
+												<button type="button" class="button" data-bs-toggle="modal" data-bs-target="#linkedInConnect02Modal">Templates</button>
+												<div class="btn-group">
+												  <button type="button" class="btn button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+												    Personalize
+												  </button>
+												  <div class="dropdown-menu dropdown-menu-end personalDropBox">
+												  	<h3>SNIPPETS</h3>
+												  	<div class="inerDrop">
+													    <a class="dropdown-item" href="#">First Name</a>
+													    <a class="dropdown-item" href="#">Last Name</a>
+													    <a class="dropdown-item" href="#">Company</a>
+													    <a class="dropdown-item" href="#">Position</a>
+													    <a class="dropdown-item" href="#">Industry</a>
+													</div>
+												  </div>
+												</div>
+											</div>
+										</div>
+										<div class="msgOfContReq">
+											<textarea rows="5" class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+
+								<div class="engProfAddtag mt-4">
+									<div class="checkBtnMain">
+										<div class="toggle-button-cover">
+									      <div class="button-cover">
+									        <div class="onOffBtn r" id="button-1">
+									          <input type="checkbox" class="checkbox">
+									          <div class="knobs"></div>
+									          <div class="layer"></div>
+									        </div>
+									      </div>
+									    </div>
+									    <span>Auto follow-up with message once connected</span>
+									</div>
+									<div class="alfredCrmBox">
+										<div class="checkBtnMain">Add Tags to Alfred CRM</div>
+										<div class="innerAlfCrm">
+											<input type="text" class="form-control" placeholder="Select Alfred Tags" />
+											<input type="text" class="form-control" placeholder="Create new tag" />
+										</div>
+									</div>
+								</div>						
+							</form>
 						</div> -->
-						<!-- <div class="form-group">
-							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault03">
-							  <label class="form-check-label" for="flexCheckDefault03">
-							    Open Link Profiles Only.
-							  </label>
+					<!-- End Linkedin Connect -->
+
+					<!-- Start Linkedin Message -->
+						<!-- <div class="prof_Engag linkedConn linkedMessage01 sortable-item mt-5">
+							<div class="titleOfNewTouch">
+								<span class="moveBox">
+									<i class="fa fa-arrows-alt" aria-hidden="true"></i> <em>3</em>
+								</span>
+								<h2>
+									<span>Send a message</span>
+									<div class="dayStep">
+										<div class="reqConnect">
+											<input type="text" class="form-control">
+											<select>
+												<option> days</option>
+											</select>
+										</div>  
+										<span>from previous step.</span>
+									</div>
+								</h2>
+								<span class="cancelBox"><i class="fa fa-times" aria-hidden="true"></i></span>
 							</div>
+							<form class="formEngag">
+								<div class="form-group">
+									<div class="connectReqMsg">
+										<div class="conReqText">Send Linkedin message</div>
+										<div class="conReqMsgBtn">
+											<div class="button attachFile">
+												<input type="file" />
+												<i class="fa fa-paperclip" aria-hidden="true"></i>
+											</div>
+											<button type="button" class="button" data-bs-toggle="modal" data-bs-target="#linkedInMsg02Modal">Templates</button>
+											<div class="btn-group">
+											  <button type="button" class="btn button dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+											    Personalize
+											  </button>
+											  <div class="dropdown-menu dropdown-menu-end personalDropBox">
+											  	<h3>SNIPPETS</h3>
+											  	<div class="inerDrop">
+												    <a class="dropdown-item" href="#">First Name</a>
+												    <a class="dropdown-item" href="#">Last Name</a>
+												    <a class="dropdown-item" href="#">Company</a>
+												    <a class="dropdown-item" href="#">Position</a>
+												    <a class="dropdown-item" href="#">Industry</a>
+												</div>
+											  </div>
+											</div>
+										</div>
+									</div>
+									<div class="msgOfContReq">
+										<textarea rows="5" class="form-control"></textarea>
+										<small>Messages will only be sent to 1st degree connections. If the lead is not connected the message will be skipped.</small>
+									</div>
+								</div>
+
+								<div class="engProfAddtag mt-4">
+									<div class="checkBtnMain">
+										<div class="toggle-button-cover">
+									      <div class="button-cover">
+									        <div class="onOffBtn r" id="button-1">
+									          <input type="checkbox" class="checkbox">
+									          <div class="knobs"></div>
+									          <div class="layer"></div>
+									        </div>
+									      </div>
+									    </div>
+									    <span>Add tags in this step</span>
+									</div>
+									<div class="alfredCrmBox">
+										<div class="checkBtnMain">Add Tags to Alfred CRM</div>
+										<div class="innerAlfCrm">
+											<input type="text" class="form-control" placeholder="Select Alfred Tags" />
+											<input type="text" class="form-control" placeholder="Create new tag" />
+										</div>
+									</div>
+								</div>						
+							</form>
 						</div> -->
-					</div>
-					<div class="text-center" style="margin-top: 10px;">
-						<button type="submit" class="btn btn-warning">Next</button>
-					</div>
-				</form>
+					<!-- End Linkedin Message -->
+				</div>			
 			</div>
+			
+
+			
+
+			<!-- Start New Touch -->
+			<div class="w-100 float-start mt-5">
+				<div class="campCreatBox mt-5">
+					<h2 class="camp_Head">Add New Touch:</h2>				
+					<div class="listOfCamp_Newtouch">
+						<a href="javascript:void(0);" class="inerTouch" id="profileEngeg"><i class="fa fa-linkedin-square"></i> Profile Engagement</a>
+						<a href="javascript:void(0);" class="inerTouch" id="linkConnect" ><i class="fa fa-linkedin-square"></i> Linkedin Connect</a>
+						<a href="javascript:void(0);" class="inerTouch" id="linkMsg"><i class="fa fa-linkedin-square"></i> Linkedin Message</a>
+						<a href="javascript:void(0);" class="inerTouch"><i class="fa fa-linkedin-square"></i> Profile Engagement</a>
+						<a href="javascript:void(0);" class="inerTouch"><i class="fa fa-linkedin-square"></i> Profile Engagement</a>
+						<a href="javascript:void(0);" class="inerTouch"><i class="fa fa-linkedin-square"></i> Profile Engagement</a>
+					</div>
+				</div>
+			</div>
+			<!-- End New Touch -->
 		</div>
+	
 	</section>
+</form>	
+	<div class="clear"></div>
+</div>
+
+
+
+<!-- Start Linkedin Connect Modal -->
+<div class="modal fade" id="linkedInConnectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose Linkedin Connection Message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-5 pb-5">
+        You don't have templates created
+      </div>
+      <div class="modal-footer d-block">
+        <button type="button" class="btn btn-primary float-start" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary float-end">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="linkedInConnect02Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose Linkedin Connection Message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-5 pb-5">
+        You don't have templates created
+      </div>
+      <div class="modal-footer d-block">
+        <button type="button" class="btn btn-primary float-start" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary float-end">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Linkedin Connect Modal -->
+
+<!-- Start Linkedin Message Modal -->
+<div class="modal fade" id="linkedInMsgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose Message Template</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-5 pb-5">
+        You don't have templates created
+      </div>
+      <div class="modal-footer d-block">
+        <button type="button" class="btn btn-primary float-start" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary float-end">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="linkedInMsg02Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choose Message Template</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pt-5 pb-5">
+        You don't have templates created
+      </div>
+      <div class="modal-footer d-block">
+        <button type="button" class="btn btn-primary float-start" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary float-end">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Linkedin Message Modal -->
+
+
+<!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
+
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+		   //$("#form").serialize()
+		    var form_new= $("#form")[0];
+		    var url= 'http://127.0.0.1:8000/Create-campaign/5';
+		    var form_new1= $("#form").serialize();
+			var form_data=JSON.stringify(form_new1);
+			/*let data = {};
+            let formdata = new FormData(form_new);
+             for (let tuple of formdata.entries()) data[tuple[0]] = tuple[1];*/
+			 console.log("form_data_n",form_new);
+			 console.log("form_data",form_data);
+            $.ajax({
+                url: url, // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'json', // data type
+                data : form_new1, // post data || get data
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        });
+    });
+
+function getFormData(data) {
+   var unindexed_array = data;
+   var indexed_array = {};
+
+   $.map(unindexed_array, function(n, i) {
+    indexed_array[n['name']] = n['value'];
+   });
+
+   return indexed_array;
+}
+</script>
 {% endblock content %}

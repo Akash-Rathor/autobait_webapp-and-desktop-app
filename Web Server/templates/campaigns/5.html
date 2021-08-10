@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'home' %}" method="POST">
+	{% csrf_token %}
+	<section class="dashboardBox">
+
+		<div class="col-md-7 campCreatBox" id="sortable-div">			
+			<div class="w-100 float-start dragbleList">
+				
+				<div class="backNdnext">
+					<a href="{% url 'campaigns' 4 %}" class="backbtn"><i class="fa fa-long-arrow-left"></i> Back</a> 
+					<input type="submit" class="nextBtn btn button" value="Publish">             
+					<!-- <input id="submit" type="button" name="submit" value="Next" class="nextBtn btn button"> -->
+				</div>
+				<div class="w-100 float-start targetNdLead">
+					<div class="form-group">
+						<label>Name your Campaign</label>
+						<input type="text" class="form-control" name="name-your-campaign" />
+					</div>
+					
+					<div class="targetLeadBox">
+						<h2><i class="fa fa-users"></i>Target leads on Linkedin</h2>
+						<p>Search URL <span><a href="{{request.session.searchedurl}}" target="_blank">View search results on LinkedIn </a></span></p>
+						<p>Maximum amount of leads: <em>{{request.session.leads}}</em></p>
+						<!-- <p>Exclude Profiles Without Photos: <em>False</em></p>
+						<p>Premium Users Only: <em>False</em></p>
+						<p>Open link Profiles Only: <em>False</em></p> -->
+					</div>
+				</div>			
+			</div>
+		</div>
+	</section>
+</form>
+
+<!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
+
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+{% endblock content %}

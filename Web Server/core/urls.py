@@ -18,4 +18,5 @@ urlpatterns = [
     path("", views.home, name="home"),
     path('settings/', views.settings,name='settings'),
     path('Create-campaign/<int:val>', views.campaigns,name='campaigns'),
+    # path('Campaign-created', views.finaldatashowpage, name='finaldatashowpage'),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

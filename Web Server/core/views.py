@@ -34,6 +34,7 @@ def home(request):
   if request.user.is_authenticated and request.user.is_superuser==False or User.is_anonymous==False and request.user.is_superuser==False:
     if not Token.objects.filter(user_id = request.user.id).exists():
       token = Token.objects.create(user_id=request.user.id)
+      print(request.POST)
     return render(request, 'dashboard/index.html')
   else:
     return render(request, 'home/home.html')
@@ -83,13 +84,25 @@ def campaigns(request,val):
   template = f'{val}.html'
 
   if request.method=="POST":
-
+    print(request.POST)
     if 'campaignmode' in request.POST:
         request.session['campaignmode'] = request.POST['campaignmode']
 
     if 'urlinputtype' in request.POST:
         request.session['urlinputtype'] = request.POST['urlinputtype']
 
+    if 'searchedurl' in request.POST:
+      request.session['searchedurl']=request.POST['searchedurl']
+      request.session['leads']=request.POST['leads']
+
     return redirect(campaigns,val=val)
 
   return render(request,f'campaigns/{template}')
+
+
+
+def finaldatashowpage(request):
+  if request.method=='POST':
+    print(request.POST)
+    return redirect('finaldatashowpage')
+  return render(request,'campaigns/5.html')

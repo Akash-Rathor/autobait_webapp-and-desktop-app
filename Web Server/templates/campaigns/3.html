@@ -9,13 +9,17 @@
 			</div>
 			<div class="w-100 float-start">
 				<h2 class="camp_Head">What type of campaign do you want to create?</h2>
-				<form method="POST" action="{% url 'campaigns' 4 %}">
+				<form method="POST" action="{% url 'campaigns' 4 %}" name='linkform'>
 					{% csrf_token %}
 					<div class="inerForm">
 						<div class="form-group">
 							<label>Paste here your linkedin search URL</label>
+							{% if 'searchedurl' in request.session %}
+							<input type="text" class="form-control" name="searchedurl" id="searchedurl" onclick="urlvalidator()"placeholder="{{request.session.searchedurl}}" value="{{request.session.searchedurl}}"/>
+							{% else %}
 							<input type="text" class="form-control" name="searchedurl" id="searchedurl" onclick="urlvalidator()"placeholder="You can use basic linkedin search URL or sales navigator URL or Recruiter Lite URL" />
-						<p id="msg"style="color:red; display:none; margin:10px;"></p>
+							{% endif %}
+							<p id="msg"style="color:red; display:none; margin:10px;"></p>
 						</div>
 					</div>
 					<div class="inerForm">
@@ -24,10 +28,10 @@
 								<label>Maximum amount of leads:</label>		
 								<div class="range">
 								    <div class="form-group range__slider">
-								      <input type="range" step="5">
+								      <input type="range" name="leads" step="5">
 								    </div>
 								    <div class="form-group range__value">
-								      <span></span>            
+										<span>{{request.session.leads}}</span>   
 								    </div>
 							  	</div>
 						    </div>
